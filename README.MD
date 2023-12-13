@@ -107,7 +107,7 @@ genfstab -U /mnt >> /mnt/etc/fstab #Generates the fstab file, which maps the UID
 ```
 
 ## chroot 
-chroot changes the root location from a live envirement to another location. This can be a newly setup installation or a already existing one. chroot is really useful, if the system can not boot throught grub anymore.
+chroot changes the root location from a live envirement to another location. This can be a new installation or an already existing one. chroot is really useful, if the system can not boot through grub anymore.
 
 ```bash
 arch-chroot /mnt #chroot into the mount point of the root partition of the arch installation
@@ -153,7 +153,7 @@ passwd #Set root password
 mkinitcpio -P
 ```
 
-## Instal GRUB
+## Install GRUB
 ```bash
 grub-install --efi-directory=/boot --bootloader-id=GRUB 
 grub-mkconfig -o /boot/grub/grub.cfg 
