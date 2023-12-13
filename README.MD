@@ -3,7 +3,7 @@
 ## Important things before installation
 - **Disable Secure Boot**
   
-## Important things regarding the Documentation
+## Important things regarding the documentation
 - **Words in curly brackets `{}` are placeholders**
 - Comments are written after Hashtags #
 
