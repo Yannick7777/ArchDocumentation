@@ -7,6 +7,7 @@
 - **Words in curly brackets `{}` are placeholders**
 - Comments are written after Hashtags #
 
+## Typical Installation
 ### Basic Setup for zsh (shell)
 ```bash
 loadkeys de_CH-latin1 #Set keybord layout
@@ -212,3 +213,13 @@ logout
 #login as root
 sway
 ```
+
+## Installation over SSH 
+```bash
+loadkeys de_CH-latin1 #Set keybord layout
+passwd #Set ssh password
+nano /etc/ssh/sshd_config #set `PermitRootLogin` to `yes`
+#systemctl reload sshd #only needed it `PermitRootLogin` was not set to `yes
+```
+Now continue with the normal installation   
+Don't forgett to install `sshd` when with pacman!
