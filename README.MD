@@ -212,4 +212,3 @@ logout
 #login as root
 sway
 ```
- 
