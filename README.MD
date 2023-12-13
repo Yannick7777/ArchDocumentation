@@ -92,7 +92,7 @@ mkfs.ext4 /dev/xyz3 #Format Root partition as ext4
 mkswap /dev/xyz2 #Mark swap partition as a swap partition
 ```
 
-## Mount Partitions
+### Mount Partitions
 ```bash
 mount --mkdir /dev/sda1 /mnt/boot #Mount EFI partition in /mnt/boot and create directory if it doesn't exist yet
 mount --mkdir /dev/sda3 /mnt #Mount Root partition in /mnt and create directory if it doesn't exist yet
@@ -100,13 +100,13 @@ swapon /dev/sda2 #Mark swap partition as active
 lsblk # Check if every partition is mounted in the correct location
 ```
 
-## Install Packages and generate fstab
+### Install Packages and generate fstab
 ```bash
 pacstrap -K /mnt base linux linux-firmware #Install the most basic packages for Linux to function.
 genfstab -U /mnt >> /mnt/etc/fstab #Generates the fstab file, which maps the UID's of partitions, their fs, their mountpoints and more
 ```
 
-## chroot 
+### chroot 
 chroot changes the root location from a live envirement to another location. This can be a new installation or an already existing one. chroot is really useful, if the system can not boot through grub anymore.
 
 ```bash
@@ -114,14 +114,14 @@ arch-chroot /mnt #chroot into the mount point of the root partition of the arch 
 mount --mkdir /dev/sda1 /mnt/boot #mount the root back to it's place 
 ```
 
-## Install more Important packages
+### Install more Important packages
 ```bash
 
 pacman -S iwd systemd udev dbus sudo fakeroot vim nano intel-ucode linux-headers dkms dhcpcd grub efibootmgr s-tui neofetch hyfetch ufw git #installs some really important and some less important packages to the installation
 
 ```
 
-## Time and locales
+### Time and locales
 ```bash
 ln -sf /usr/share/zoneinfo/Europe/Zurich /etc/localtime #Set the timezone
 
@@ -137,37 +137,37 @@ nano /etc/vconsole.conf #Enter the console configuration file..
 	KEYMAP=de_CH-latin1 #..and set the Swiss German keyboard as the default keyboard
 ```
 
-## Hostname
+### Hostname
 ```bash
 nano /etc/hostname #Enter hostname file.. 
 	{myhostname}  #..and set hostname
 ```  
 
-# Root password
+### Root password
 ```bash
 passwd #Set root password 
 ```
 
-## Generate new initramfs 
+### Generate new initramfs 
 ```bash
 mkinitcpio -P
 ```
 
-## Install GRUB
+### Install GRUB
 ```bash
 grub-install --efi-directory=/boot --bootloader-id=GRUB 
 grub-mkconfig -o /boot/grub/grub.cfg 
 ```
 
-## Leaving chroot and unmounting partitions
+### Leaving chroot and unmounting partitions
 ```bash
 exit
 unmount -R /mnt 
 reboot
 ```
-## Remove the installation media and boot to the installation
-## Login as root
-## User creation
+### Remove the installation media and boot to the installation
+### Login as root
+### User creation
 ```bash
 EDITOR=nano #Select texteditor for sudo-ers file. Standard is vim. 
 visudo #Enter copy of the configuration file. The copy get's written to the originalfile after exiting and getting verfied by visudo
@@ -180,14 +180,14 @@ passwd eyery #Change password of the user
 su eyery #Switch to the newly created user 
 ```
 
-## Internet
+### Internet
 ```bash
 sudo systemctl enable dhcpcd #Enable dhcp daemon
 sudo systemctl start dhcpcd #Start dhcp daemon
 ping 1.1.1.1 
 ```
 
-## AUR
+### AUR
 ```bash
 #Install yay for easy access to the AUR 
 git clone https://aur.archlinux.org/yay.git #Clone yay's files
@@ -202,7 +202,7 @@ yay –S {package}
 yay  -S htop net-tools #Some more useful packages
 ```
 
-## Install sway (**untested !!!**)
+### Install sway (**untested !!!**)
 ```bash
 pacman -S sway #Install sway package
 sudo usermod -G seat,sudo {user} #Add user to the seat group
