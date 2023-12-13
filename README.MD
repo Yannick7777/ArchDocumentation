@@ -1,4 +1,3 @@
-[start]: 
 # Arch Setup documentation 
 
 ## Important things before installation
