@@ -4,7 +4,7 @@
 - **Disable Secure Boot**
   
 ## Important things regarding the documentation
-- **Words in curly brackets `{}` are placeholders**
+- **Words in `<>` are placeholders**
 - Comments are written after Hashtags #
 
 ## Typical Installation
@@ -16,7 +16,7 @@ setfont ter-132b #Make font bigger
 
 ### Check UEFI bitness (Boot Mode)
 ```bash
-cat /sys/firmware/efi/fw_platform_size 
+cat /sys/firmware/efi/fw_platform_size
 ```
 Returns:
 - 64 -> 64 Bit UEFI
@@ -31,73 +31,66 @@ ip link #Basic Information about Network interfaces
 
 ### WLan 
 ```bash
-iwctl #iwctl client. iwd is the daemon and iwmon is the wifi monitoring tool 
+iwctl #iwctl client. iwd is the daemon and iwmon is the wifi monitoring tool
     device list #List WLan adapters
-    device {device} set-property Powered on #Turn on / Activate the adapter 
-    station {device} scan #Scan for Networks
-    station {device} get-networks #Print the networks
-    station {device} connect SSID #Connect to a network
-```
-
-### Set Time
-```bash
-timedatectl set-timezone Europe/Zurich #Set timezone to Zurich
-timedatectl #Verify that the time is accurate
+    device <device> set-property Powered on #Turn on / Activate the adapter
+    station <device> scan #Scan for Networks
+    station <device> get-networks #Print the networks
+    station <device> connect SSID #Connect to a network
 ```
 
 ### Create GPT Table and Paritions
 ```bash
 
-fdisk –l #list storage devices. Similar to `lsblkb` 
+fdisk –l #list storage devices. Similar to `lsblk`
 #Partition table
-fdisk /dev/{xyz} 
+fdisk /dev/<disk>
 	g #Make disk GPT
-	w #Write to disk 
+	w #Write to disk
 
 fdisk -l #l
-fdisk /dev/{xyz}
+fdisk /dev/<disk>
 ```
 
-**Use [Calculator](https://eyer.life/sectorcalc) for calculating values, as these represent amounts of 512 byte blocks.** 
+**Use [Calculator](https://eyer.life/sectorcalc) for calculating values, as these represent amounts of 512 byte blocks.**
 ```bash
 #EFI system partition
 	n #New partition
-	{default} 
-	{default} #Begining is at the ending of the partition before
-	{end of sector} #End of sector, use calc
+	<default>
+	<default> #Begining is at the ending of the partition before
+	<end of sector> #End of sector, use calc
 	t #Change type ...
 	uefi #... to uefi (Efi system partition, includes the bootloader and stuff)
 	 
-#Swap (For better power efficency on laptops + hybrid mode (saves RAM to Disk)) 
-fdisk /dev/xyz 
-	n #New oartition
-	{default} 
-	{default} #Begining is at the ending of the partition before
-	{end of sector} #End of sector, use calc
+#Swap (For better power efficency on laptops + hybrid mode (saves RAM to Disk))
+	n #New opartition
+	<default>
+	<default> #Begining is at the ending of the partition before
+	<end of sector> #End of sector, use calc
 	t # Change type..
-	{default} #..of the last edited partion..
+	<default>
+	 #..of the last edited partion..
 	swap #..to swap.
 	 
 #Root partition
-fdisk /dev/xyz 
 	n #New partition
-	{default} 
-	{default} #Begining is at the ending of the partition before
-	{default} #Ending is the end of the Disk
+	<default>
+	<default> #Begining is at the ending of the partition before
+	<default> #Ending is the end of the Disk
 	w #Write
   
 #Create Filesystems
 lsblk #List block devices - Check if all partitions are correct
-mkfs.fat -F 32 /dev/xyz1 #Format EFI partition as fat
-mkfs.ext4 /dev/xyz3 #Format Root partition as ext4
-mkswap /dev/xyz2 #Mark swap partition as a swap partition
+mkfs.fat -F 32 /dev/<part1> #Format EFI partition as fat
+mkfs.ext4 /dev/<part3> #Format Root partition as ext4
+mkswap /dev/<part2> #Mark swap partition as a swap partition
 ```
 
 ### Mount Partitions
 ```bash
-mount --mkdir /dev/sda1 /mnt/boot #Mount EFI partition in /mnt/boot and create directory if it doesn't exist yet
-mount --mkdir /dev/sda3 /mnt #Mount Root partition in /mnt and create directory if it doesn't exist yet
-swapon /dev/sda2 #Mark swap partition as active
+mount --mkdir /dev/<part3> /mnt #Mount Root partition in /mnt and create directory if it doesn't exist yet
+mount --mkdir /dev/<part1> /mnt/boot #Mount EFI partition in /mnt/boot and create directory if it doesn't exist yet
+swapon /dev/<part2> #Mark swap partition as active
 lsblk # Check if every partition is mounted in the correct location
 ```
 
@@ -112,7 +105,6 @@ chroot changes the root location from a live envirement to another location. Thi
 
 ```bash
 arch-chroot /mnt #chroot into the mount point of the root partition of the arch installation
-mount --mkdir /dev/sda1 /mnt/boot #mount the root back to it's place 
 ```
 
 ### Install more Important packages
@@ -131,7 +123,7 @@ hwclock –systohc #generates some files for the hardwareclock
 nano /etc/locale.gen //uncomment ```de_CH.UTF-8 UTF-8``` and ```en_US.UTF-8 UTF-8``` #Enable Swiss German and English locale files
 locale-gen #Generate locale files
 nano /etc/locale.conf #Define the used language for..
-	LANG=de_CH.UTF-8  #..timeformat and currency..
+	LANG=de_CH.UTF-8 #..timeformat and currency..
 	LC_MESSAGES=en_US.UTF-8 #.. and all userinteractions.
 
 nano /etc/vconsole.conf #Enter the console configuration file..
@@ -141,8 +133,8 @@ nano /etc/vconsole.conf #Enter the console configuration file..
 ### Hostname
 ```bash
 nano /etc/hostname #Enter hostname file.. 
-	{myhostname}  #..and set hostname
-```  
+	<myhostname> #..and set hostname
+```
 
 ### Root password
 ```bash
@@ -200,7 +192,7 @@ yay -Syu #Upgrade packages. Part of the command executes `mkinitcpio -P` which p
 yay –S {package}
 #common ones: ast -> ast-firmware, xhci_pci -> upd72020x-fw, wd719x -> wd719x-firmware, aic94xx -> aic94xx-firmware 
 
-yay  -S htop net-tools #Some more useful packages
+yay -S htop net-tools #Some more useful packages
 ```
 
 ### Install sway (**untested !!!**)
@@ -221,5 +213,5 @@ passwd #Set ssh password
 nano /etc/ssh/sshd_config #set `PermitRootLogin` to `yes`
 #systemctl reload sshd #only needed it `PermitRootLogin` was not set to `yes
 ```
-Now continue with the normal installation   
+Now continue with the normal installation
 Don't forget to install `sshd` when with pacman!
