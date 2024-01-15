@@ -178,10 +178,9 @@ su <user> #Switch to the newly created user
 ### Internet
 ```bash
 sudo systemctl enable dhcpcd #Enable dhcp daemon
-sudo systemctl start dhcpcd
 sudo systemctl start dhcpcd #Start dhcp daemon
 
-ping 1.1.1.1 
+ping 1.1.1.1 #Be patient! Getting the ip address can take some time..
 ```
 
 ### AUR
@@ -202,7 +201,8 @@ yay -S htop net-tools #Some more useful packages
 
 ### Install sway (**untested !!!**)
 ```bash
-pacman -S sway #Install sway package
+sudo pacman -S sway foot #Install sway package
+yay -S wayward-git
 sudo usermod -G seat,sudo {user} #Add user to the seat group
 sudo systemctl enable seatd #Enable the seat daemon
 sudo systemctl start seatd #Start the sead daemon
