@@ -218,5 +218,5 @@ passwd #Set ssh password
 nano /etc/ssh/sshd_config #set `PermitRootLogin` to `yes`
 #systemctl reload sshd #only needed it `PermitRootLogin` was not set to `yes
 ```
-Now continue with the normal installation
+Now continue with the normal installation. <br>
 Don't forget to install `sshd` when with pacman!
