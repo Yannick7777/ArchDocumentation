@@ -199,18 +199,6 @@ yay –S <package>
 yay -S htop net-tools #Some more useful packages
 ```
 
-### Install sway (**untested !!!**)
-```bash
-sudo pacman -S sway foot #Install sway package
-yay -S wayward-git
-sudo usermod -G seat,sudo {user} #Add user to the seat group
-sudo systemctl enable seatd #Enable the seat daemon
-sudo systemctl start seatd #Start the sead daemon
-logout 
-#login as root
-sway
-```
-
 ## Installation over SSH 
 ```bash
 loadkeys de_CH-latin1 #Set keybord layout
