@@ -190,7 +190,7 @@ cd
 git clone https://aur.archlinux.org/yay.git #Clone yay's files
 cd yay 
 
-**This Package needs to be installed for makepkg -si to work**
+# This Package needs to be installed for makepkg -si to work
 sudo pacman -S base-devel
 
 makepkg –si #Build and install yay. If it failes on the first execution, just re-run 
