@@ -1,6 +1,5 @@
 # Explanation
 This File contains information about how exactly you can get a gui for arch linux
-It comes alongside my arch linux rice with a bash script in https://github.com/H14d3n/Automation.git
 
 ## Gnome Desktop environment
 Open the Arch Linux Terminal & execute the following command.
