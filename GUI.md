@@ -4,7 +4,7 @@ It comes alongside my arch linux rice with a bash script in https://github.com/H
 
 ## Gnome Desktop environment
 Open the Arch Linux Terminal & execute the following command.
-**Be sure to only press enter when it asks you something.
+**Be sure to only press enter when it asks you something.**
 This ensures, that the default setting is choosed.
 
 ```bash
