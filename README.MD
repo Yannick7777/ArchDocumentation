@@ -189,6 +189,10 @@ ping 1.1.1.1 #Be patient! Getting the ip address can take some time..
 cd
 git clone https://aur.archlinux.org/yay.git #Clone yay's files
 cd yay 
+
+**This Package needs to be installed for makepkg -si to work**
+sudo pacman -S base-devel
+
 makepkg –si #Build and install yay. If it failes on the first execution, just re-run 
 yay -Syu #Upgrade packages. Part of the command executes `mkinitcpio -P` which prints `Missing firmware` messages.
 #Look for "=> WARNING: Possibly missing firmware for module: 'xyz' 
