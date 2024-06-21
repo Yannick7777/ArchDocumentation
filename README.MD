@@ -113,7 +113,7 @@ arch-chroot /mnt #chroot into the mount point of the root partition of the arch 
 ### Install more Important packages
 ```bash
 
-pacman -S iwd systemd udev dbus sudo fakeroot vim nano intel-ucode linux-headers dkms dhcpcd grub efibootmgr s-tui neofetch hyfetch ufw git #installs some really important and some less important packages to the installation
+pacman -S iwd systemd udev dbus sudo fakeroot vim nano intel-ucode linux-headers dkms networkmanager grub efibootmgr s-tui neofetch hyfetch ufw git #installs some really important and some less important packages to the installation
 ```
 
 ### Time and locales
@@ -177,8 +177,10 @@ su <user> #Switch to the newly created user
 
 ### Internet
 ```bash
-sudo systemctl enable dhcpcd #Enable dhcp daemon
-sudo systemctl start dhcpcd #Start dhcp daemon
+sudo systemctl enable NetworkManager.service #Enable NetworkManager
+sudo systemctl start NetworkManager.service
+nmcli device wifi list
+nmcli device wifi connect <SSID>
 
 ping 1.1.1.1 #Be patient! Getting the ip address can take some time..
 ```
