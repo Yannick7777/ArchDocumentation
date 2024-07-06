@@ -113,7 +113,7 @@ arch-chroot /mnt #chroot into the mount point of the root partition of the arch 
 ### Install more Important packages
 ```bash
 
-pacman -S iwd systemd udev dbus sudo fakeroot neovim nano intel-ucode linux-headers dkms dhcpcd grub efibootmgr s-tui fastfetch hyfetch ufw git #installs some really important and some less important packages to the installation
+pacman -S iwd systemd udev dbus sudo fakeroot neovim nano intel-ucode linux-headers dkms dhcpcd grub efibootmgr s-tui fastfetch hyfetch ufw git base-devel go #installs some really important and some less important packages to the installation
 ```
 
 ### Time and locales
