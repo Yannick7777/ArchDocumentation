@@ -113,7 +113,7 @@ arch-chroot /mnt #chroot into the mount point of the root partition of the arch 
 ### Install more Important packages
 ```bash
 
-pacman -S iwd systemd udev dbus sudo fakeroot vim nano intel-ucode linux-headers dkms dhcpcd grub efibootmgr s-tui neofetch hyfetch ufw git #installs some really important and some less important packages to the installation
+pacman -S iwd systemd udev dbus sudo fakeroot neovim nano intel-ucode linux-headers dkms dhcpcd grub efibootmgr s-tui fastfetch hyfetch ufw git #installs some really important and some less important packages to the installation
 ```
 
 ### Time and locales
@@ -170,7 +170,7 @@ visudo #Enter copy of the configuration file. The copy get's written to the orig
 		%sudo ALL=(ALL:ALL) ALL 
 	
 groupadd sudo #Add sudo-ers group 
-useradd -m -G sudo –s /bin/bash <user> #Add user and assign them to the 'sudo' group
+useradd -m -G sudo -s /bin/bash <user> #Add user and assign them to the 'sudo' group
 passwd <user> #Change password of the user
 su <user> #Switch to the newly created user
 ```
