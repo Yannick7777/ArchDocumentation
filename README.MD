@@ -120,7 +120,7 @@ pacman -S iwd systemd udev dbus sudo fakeroot neovim nano intel-ucode linux-head
 ```bash
 ln -sf /usr/share/zoneinfo/Europe/Zurich /etc/localtime #Set the timezone
 
-hwclock –-systohc #generates some files for the hardwareclock
+hwclock --systohc #generates some files for the hardwareclock
 # timedatectl set-local-rtc 1 #use only if the installation gets dualbooted with Windows, because Windows stores the local time on the hw clock. By default, Arch stores the time in UTC format 
 nano /etc/locale.gen //uncomment ```de_CH.UTF-8 UTF-8``` and ```en_US.UTF-8 UTF-8``` #Enable Swiss German and English locale files
 locale-gen #Generate locale files
