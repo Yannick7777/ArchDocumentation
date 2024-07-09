@@ -91,7 +91,7 @@ mkswap /dev/<part2> #Mark swap partition as a swap partition
 
 ### Mount Partitions
 ```bash
-mount --mkdir /dev/<part3> /mnt #Mount Root partition in /mnt and create directory if it doesn't exist yet
+mount /dev/<part3> /mnt #Mount Root partition in /mnt
 mount --mkdir /dev/<part1> /mnt/boot #Mount EFI partition in /mnt/boot and create directory if it doesn't exist yet
 swapon /dev/<part2> #Mark swap partition as active
 lsblk # Check if every partition is mounted in the correct location
