@@ -50,16 +50,13 @@ fdisk /dev/<disk>
 
 fdisk -l #l
 fdisk /dev/<disk>
-```
 
-**Use [Calculator](https://eyer.life/sectorcalc) for calculating values, as these represent amounts of 512 byte blocks.**
-```bash
 #EFI system partition
 	n #New partition
 	<default> #Partition type is primary
 	<default> #Partition number
 	<default> #Begining is at the ending of the partition before
-	<end of sector> #End of sector, use calc
+	<end of sector> #End of sector, I recommand using relative values, like '+2g' or '-2g'.
 	t #Change type ...
 	uefi #... to uefi (Efi system partition, includes the bootloader and stuff)
 	 
@@ -68,7 +65,7 @@ fdisk /dev/<disk>
 	<default> #Partition type is primary
 	<default> #Partition number
 	<default> #Begining is at the ending of the partition before
-	<end of sector> #End of sector, use calc
+	<end of sector> #End of sector, I recommand using relative values, like '+2g' or '-2g'.
 	t # Change type..
 	<default>
 	 #..of the last edited partion..
@@ -114,7 +111,7 @@ arch-chroot /mnt #chroot into the mount point of the root partition of the arch 
 ### Install more Important packages
 ```bash
 
-pacman -S iwd systemd udev dbus sudo fakeroot neovim nano intel-ucode linux-headers dkms dhcpcd grub efibootmgr bash-completion s-tui fastfetch hyfetch ufw git base-devel go #installs some really important and some less important packages to the installation
+pacman -S iwd systemd udev dbus sudo fakeroot neovim nano intel-ucode linux-headers dkms networkmanager grub efibootmgr bash-completion s-tui fastfetch hyfetch btop ufw git base-devel go #installs some really important and some less important packages to the installation
 ```
 
 ### Time and locales
@@ -178,8 +175,9 @@ su <user> #Switch to the newly created user
 
 ### Internet
 ```bash
-sudo systemctl enable dhcpcd #Enable dhcp daemon
-sudo systemctl start dhcpcd #Start dhcp daemon
+sudo systemctl enable --now networkmanager #Enable and starting the NetworkManager daemon
+nmcli device wifi list #List WIFI networks
+nmcli device wifi connect <SSID> password <password> #Connect to network
 
 ping 1.1.1.1 #Be patient! Getting the ip address can take some time..
 ```
