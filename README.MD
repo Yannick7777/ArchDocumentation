@@ -183,6 +183,12 @@ nmcli device wifi connect <SSID> password <password> #Connect to network
 ping 1.1.1.1 #Be patient! Getting the ip address can take some time..
 ```
 
+### Create default user directories
+```
+sudo pacman -Syu xdg-user-dir
+xdg-user-dirs-update
+```
+
 ### AUR
 ```bash
 #Install yay for easy access to the AUR 
