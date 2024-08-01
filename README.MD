@@ -110,7 +110,7 @@ arch-chroot /mnt #chroot into the mount point of the root partition of the arch 
 
 ### Install more Important packages
 ```bash
-nano /etc/pacman.conf #Uncomment `ParallelDownloads = 5`and possibly set it to a higher value, for example 10 or 20
+nano /etc/pacman.conf #Uncomment `ParallelDownloads = 5`and possibly set it to a higher value, for example 10 or 20. I also bekommen enable the `extra` and `multilib` gepos by uncommenting the matching lines
 	
 pacman -S iwd systemd udev dbus sudo fakeroot neovim nano intel-ucode linux-headers dkms networkmanager grub efibootmgr bash-completion s-tui fastfetch hyfetch btop openssh ufw git base-devel go #installs some really important and some less important packages to the installation
 ```
