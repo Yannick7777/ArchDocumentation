@@ -110,8 +110,9 @@ arch-chroot /mnt #chroot into the mount point of the root partition of the arch 
 
 ### Install more Important packages
 ```bash
-
-pacman -S iwd systemd udev dbus sudo fakeroot neovim nano intel-ucode linux-headers dkms networkmanager grub efibootmgr bash-completion s-tui fastfetch hyfetch btop ufw git base-devel go #installs some really important and some less important packages to the installation
+nano /etc/pacman.conf #Uncomment `ParallelDownloads = 5`and possibly set it to a higher value, for example 10 or 20
+	
+pacman -S iwd systemd udev dbus sudo fakeroot neovim nano intel-ucode linux-headers dkms networkmanager grub efibootmgr bash-completion s-tui fastfetch hyfetch btop openssh ufw git base-devel go #installs some really important and some less important packages to the installation
 ```
 
 ### Time and locales
@@ -120,7 +121,7 @@ ln -sf /usr/share/zoneinfo/Europe/Zurich /etc/localtime #Set the timezone
 
 hwclock --systohc #generates some files for the hardwareclock
 # timedatectl set-local-rtc 1 #use only if the installation gets dualbooted with Windows, because Windows stores the local time on the hw clock. By default, Arch stores the time in UTC format 
-nano /etc/locale.gen //uncomment ```de_CH.UTF-8 UTF-8``` and ```en_US.UTF-8 UTF-8``` #Enable Swiss German and English locale files
+nano /etc/locale.gen #uncomment `de_CH.UTF-8 UTF-8` and `en_US.UTF-8 UTF-8` #Enable Swiss German and English locale files
 locale-gen #Generate locale files
 nano /etc/locale.conf #Define the used language for..
 	LANG=de_CH.UTF-8 #..timeformat and currency..
