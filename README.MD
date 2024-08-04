@@ -177,7 +177,7 @@ su <user> #Switch to the newly created user
 
 ### Internet
 ```bash
-sudo systemctl enable --now networkmanager #Enable and starting the NetworkManager daemon
+sudo systemctl enable --now NetworkManager #Enable and starting the NetworkManager daemon
 nmcli device wifi list #List WIFI networks
 nmcli device wifi connect <SSID> password <password> #Connect to network
 
